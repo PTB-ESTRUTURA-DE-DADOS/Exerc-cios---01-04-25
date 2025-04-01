@@ -2,31 +2,31 @@
 #include <stdlib.h>
 #include <locale.h>
 
-char *encontrar_caractere(char *texto_teste){
 
-    while(*texto_teste != '\0'){
+double quad_cubo(double r, double *r3){ //função para calcular o quadrado e cubo de R
 
-        if((unsigned char)*texto_teste > 127){
-            return texto_teste;
-        }
-        texto_teste++;
-    }
-    return NULL;
+  double quad;
+  
+  quad = r * r;
+
+  *r3 = quad * r;
+
+  return quad;
+  
 }
 
-
 int main(void){
+  setlocale(LC_ALL, "Portuguese");
+  
+  double r, r3, quad_r; //variáveis
+  
+  printf("Escolha um valor para R: \n");
+  scanf("%lf", &r);
 
-    setlocale(LC_ALL, "Portuguese");
+  quad_r = quad_cubo(r, &r3); //chamada da função
 
-    char texto_teste[] = "Morrer com a faca no peito e o queijo na chão";
-    char *pstr = encontrar_caractere(texto_teste);
+  printf("O quadrado de R é: %.02lf\nO cubo de R é: %.02lf", quad_r, r3);
 
-    if (pstr != NULL) {
-        printf("Caractere fora do ASCII encontrado: '%c'\n", *pstr);
-    } else {
-        printf("Todos os caracteres estão dentro do ASCII.\n");
-    }
-
-    return 0;
+return 0;
+  
 }
